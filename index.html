@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#071810">
+<title>Huschels Tour-Präsentationen</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="assets/app-icon.png">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+<style>
+:root{--bg:#071810;--panel:#10281d;--panel2:#173526;--ink:#f8edd6;--muted:#cbbd9d;--gold:#e0a63d;--gold2:#ffd98a;--line:rgba(255,255,255,.12);--shadow:0 24px 70px rgba(0,0,0,.38)}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:#071810;color:var(--ink)}body{background:radial-gradient(circle at 15% 0,#234832 0,#071810 45%,#030d08 100%);min-height:100vh}.hidden{display:none!important}button,a{font:inherit}.shell{min-height:100vh}
+.topbar{height:76px;padding:0 max(22px,env(safe-area-inset-left));display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(224,166,61,.18);background:rgba(4,16,10,.78);backdrop-filter:blur(22px);position:sticky;top:0;z-index:20}
+.logo{display:flex;align-items:center;gap:14px}.logo img{width:48px;height:48px;border-radius:14px;box-shadow:0 8px 24px rgba(0,0,0,.35)}.logo b{font-size:20px}.logo small{display:block;color:var(--muted);margin-top:2px}.top-actions{display:flex;gap:10px;align-items:center}.ghost{border:1px solid var(--line);background:rgba(255,255,255,.055);color:var(--ink);padding:10px 14px;border-radius:13px;text-decoration:none;cursor:pointer}
+.home{padding:38px max(28px,env(safe-area-inset-left)) 70px;max-width:1500px;margin:auto}.eyebrow{text-transform:uppercase;letter-spacing:.17em;color:var(--gold2);font-size:13px;font-weight:800}.home h1{font-size:clamp(42px,6vw,76px);line-height:.96;max-width:900px;margin:12px 0 18px}.lead{font-size:20px;color:var(--muted);max-width:850px;line-height:1.48}
+.project-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px;margin-top:40px}.project-card{border:1px solid var(--line);background:linear-gradient(145deg,rgba(255,255,255,.09),rgba(255,255,255,.035));border-radius:30px;overflow:hidden;box-shadow:var(--shadow);cursor:pointer;transition:.2s transform,.2s border-color}.project-card:hover{transform:translateY(-3px);border-color:rgba(255,217,138,.45)}.project-cover{aspect-ratio:16/9;position:relative;overflow:hidden;background:#0b1f16}.project-cover img{width:100%;height:100%;object-fit:cover}.project-cover:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(4,14,9,.78))}.status{position:absolute;left:18px;bottom:16px;z-index:2;background:rgba(7,24,16,.84);border:1px solid rgba(255,255,255,.15);padding:7px 11px;border-radius:999px;font-size:12px}.project-body{padding:22px}.project-body h2{font-size:30px;margin:0 0 8px}.project-body p{color:var(--muted);line-height:1.45;margin:0 0 22px}.project-meta{display:flex;justify-content:space-between;gap:12px;color:var(--muted);font-size:13px}.empty-card{border:1px dashed rgba(255,217,138,.35);display:flex;align-items:center;justify-content:center;min-height:320px;border-radius:30px;color:var(--muted);text-align:center;padding:28px;background:rgba(255,255,255,.025)}
+.project-view{min-height:calc(100vh - 76px);display:grid;grid-template-columns:330px 1fr}.project-sidebar{padding:26px;border-right:1px solid rgba(224,166,61,.18);background:rgba(4,17,11,.76);overflow:auto}.back{display:inline-flex;align-items:center;gap:8px;color:var(--muted);background:none;border:0;padding:0 0 20px;cursor:pointer}.project-head{display:flex;gap:14px;align-items:center}.project-head img{width:72px;height:72px;border-radius:20px}.project-head h2{margin:0;font-size:25px;line-height:1.05}.project-head p{color:var(--muted);font-size:13px;margin:5px 0 0}.side-title{margin:28px 0 10px;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.15em}.presentation-list{display:grid;gap:10px}.presentation-item{padding:14px;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.045);cursor:pointer;text-align:left;color:var(--ink)}.presentation-item.active{border-color:rgba(255,217,138,.55);background:rgba(224,166,61,.12)}.presentation-item b{display:block}.presentation-item small{display:block;margin-top:4px;color:var(--muted)}.side-download{display:block;margin-top:16px;text-align:center;text-decoration:none;color:#1b1100;font-weight:800;background:linear-gradient(135deg,#ffe2a5,#d79b2c);padding:13px;border-radius:15px}.side-note{font-size:13px;color:var(--muted);line-height:1.45;margin-top:20px}
+.stage{position:relative;min-width:0;height:calc(100vh - 76px);overflow:hidden}.slide{display:none;height:100%;padding:38px 44px 94px;overflow:auto}.slide.active{display:block}.slide-inner{max-width:1360px;margin:auto;min-height:100%;display:flex;flex-direction:column}.kicker{text-transform:uppercase;letter-spacing:.18em;color:var(--gold2);font-size:13px;font-weight:800}.title{font-size:clamp(42px,5.7vw,78px);line-height:.95;margin:12px 0 16px;max-width:1000px}.subtitle{font-size:22px;line-height:1.4;color:var(--muted);max-width:980px}
+.hero-grid{display:grid;grid-template-columns:minmax(420px,1.05fr) minmax(380px,.95fr);gap:30px;align-items:stretch;flex:1}.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:26px 0}.stat,.panel,.day-card,.beer-card{border:1px solid var(--line);border-radius:24px;background:linear-gradient(180deg,rgba(255,255,255,.075),rgba(255,255,255,.03));padding:20px}.stat b{display:block;color:var(--gold2);font-size:18px;margin-bottom:4px}.btn-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:12px}.primary{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;color:#1b1100;font-weight:800;background:linear-gradient(135deg,#ffe2a5,#d79b2c);padding:13px 16px;border-radius:15px;border:0;cursor:pointer}.secondary{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;color:var(--ink);font-weight:700;background:rgba(255,255,255,.055);padding:13px 16px;border-radius:15px;border:1px solid var(--line);cursor:pointer}
+.map-panel{display:flex;flex-direction:column;gap:12px;min-height:520px}.map-title{display:flex;justify-content:space-between;align-items:center;gap:12px}.map-title h3{margin:0;font-size:28px}.map-title span{color:var(--muted);font-size:14px}.map{width:100%;min-height:420px;border-radius:22px;border:1px solid var(--line);overflow:hidden;background:#0b1f16}.legend{display:flex;flex-wrap:wrap;gap:8px}.legend span{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.05);border:1px solid var(--line);padding:7px 10px;border-radius:999px;font-size:13px;color:var(--muted)}.dot{width:11px;height:11px;border-radius:50%;display:inline-block}.route-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:22px;flex:1;margin-top:20px}.days-list{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-content:start}.day-mini{border-left:4px solid var(--gold);border-radius:15px;background:rgba(255,255,255,.055);padding:13px}.day-mini b{font-size:18px}.day-mini div{color:var(--muted);font-size:14px;margin-top:4px}.day-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:20px}.day-card h3{font-size:30px;margin:0 0 8px}.day-card p{color:var(--muted);line-height:1.45;margin:7px 0}.pill{display:inline-block;border:1px solid rgba(255,217,138,.4);background:rgba(224,166,61,.1);padding:6px 10px;border-radius:999px;margin-top:6px}.callout{margin-top:18px;border:1px solid rgba(224,166,61,.36);background:linear-gradient(135deg,rgba(224,166,61,.14),rgba(255,255,255,.035));border-radius:25px;padding:24px;font-size:23px;line-height:1.35}.beer-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:24px}.beer-card{display:grid;grid-template-rows:auto 1fr}.beer-card img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:18px;margin-bottom:14px;border:1px solid rgba(255,255,255,.08)}.beer-card h3{margin:0 0 5px;font-size:28px}.beer-card b{color:var(--gold2)}.beer-card p{margin:8px 0;color:var(--muted);line-height:1.45}.notes{display:grid;gap:14px;margin-top:24px}.note{font-size:20px;padding:20px 22px;border-radius:20px;background:rgba(255,255,255,.055);border-left:5px solid var(--gold)}.table-wrap{overflow:auto;margin-top:20px;border-radius:20px;border:1px solid var(--line);background:rgba(255,255,255,.035)}table{width:100%;border-collapse:collapse;font-size:14px;min-width:920px}th,td{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.07);text-align:left;vertical-align:top}th{position:sticky;top:0;background:#153623;color:var(--gold2)}
+.deck-footer{position:absolute;left:34px;right:34px;bottom:18px;display:flex;align-items:center;justify-content:space-between;pointer-events:none}.counter{color:var(--muted);font-size:14px}.controls{display:flex;gap:9px;pointer-events:auto}.controls button{border:1px solid var(--line);background:rgba(8,29,19,.9);color:var(--ink);border-radius:14px;padding:11px 16px;font-weight:700;cursor:pointer}.progress{position:absolute;left:0;right:0;bottom:0;height:5px;background:rgba(255,255,255,.08)}.bar{height:100%;background:linear-gradient(90deg,#ffe2a5,#d79b2c);width:0}.tap-hint{color:var(--muted);font-size:13px;margin-top:10px}
+.map-modal{position:fixed;inset:0;background:rgba(3,10,7,.88);z-index:60;padding:22px;display:none}.map-modal.open{display:block}.map-modal .inner{height:100%;display:grid;grid-template-rows:auto 1fr;gap:14px}.map-modal .head{display:flex;justify-content:space-between;align-items:center;gap:12px}.map-modal h3{margin:0;font-size:30px}.map-modal p{margin:4px 0 0;color:var(--muted)}.map-large{height:100%;border-radius:24px;border:1px solid var(--line);overflow:hidden}
+.leaflet-popup-content-wrapper,.leaflet-popup-tip{background:#12271d;color:var(--ink)}.leaflet-control-attribution{font-size:11px}
+@media(max-width:980px){.project-view{grid-template-columns:1fr}.project-sidebar{position:absolute;z-index:15;left:14px;top:14px;width:290px;max-height:calc(100% - 28px);border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow);transform:translateX(-120%);transition:.2s}.project-sidebar.open{transform:none}.stage{height:calc(100vh - 76px)}.slide{padding:28px 22px 90px}.hero-grid,.route-grid,.day-grid,.beer-grid,.days-list{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}.mobile-menu{display:inline-flex!important}.deck-footer{left:20px;right:20px}.title{font-size:48px}.subtitle{font-size:18px}.map-panel{min-height:430px}}@media(min-width:981px){.mobile-menu{display:none!important}}@media(max-width:600px){.project-grid{grid-template-columns:1fr}.home{padding-left:18px;padding-right:18px}.topbar{padding-left:16px;padding-right:16px}.logo small{display:none}.slide{padding-top:22px}.title{font-size:40px}.stats{grid-template-columns:1fr}.map-modal{padding:12px}}
+</style>
+</head>
+<body>
+<div class="shell">
+<header class="topbar">
+  <div class="logo"><img src="assets/app-icon.png" alt=""><div><b>Huschels Tour-Präsentationen</b><small>Projekte · Varianten · GPX</small></div></div>
+  <div class="top-actions"><button class="ghost mobile-menu hidden" id="menuBtn">Projektmenü</button><button class="ghost hidden" id="homeBtn">Alle Projekte</button><a class="ghost" href="README.md">Hilfe</a></div>
+</header>
+<section class="home" id="homeView">
+  <div class="eyebrow">Präsentationsbibliothek</div>
+  <h1>Touren zeigen. Varianten vergleichen. GPX direkt dabei.</h1>
+  <p class="lead">Jedes Reiseprojekt erhält seine eigene Kachel. Innerhalb eines Projekts können beliebig viele Präsentationsfassungen liegen – zum Beispiel Grobplanung, Kurviger-Fassung, finale Reiseführer-Version oder eine spätere Nachbereitung.</p>
+  <div class="project-grid" id="projectGrid"></div>
+</section>
+<section class="project-view hidden" id="projectView">
+  <aside class="project-sidebar" id="side"></aside>
+  <main class="stage" id="stage"></main>
+</section>
+</div>
+<div class="map-modal" id="mapModal">
+  <div class="inner">
+    <div class="head">
+      <div><h3>Routenkarte – große Ansicht</h3><p>Alle Leitpunkte der aktuellen GPX. Die Karte ist zoombar und auf dem iPad per Touch verschiebbar.</p></div>
+      <button class="secondary" id="closeMapBtn">Schließen</button>
+    </div>
+    <div class="map-large" id="mapLarge"></div>
+  </div>
+</div>
+<script src="data/projects.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script>
+const $=s=>document.querySelector(s), homeView=$('#homeView'), projectView=$('#projectView'), projectGrid=$('#projectGrid'), side=$('#side'), stage=$('#stage'), homeBtn=$('#homeBtn'), menuBtn=$('#menuBtn'), mapModal=$('#mapModal');
+let activeProject=null, activePresentation=null, slides=[], current=0, touchX=0, inlineMap=null, largeMap=null;
+const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+const roleColors={start:'#39c56b',shaping:'#f0b54a',via:'#7ac7ff',day_destination:'#ff8a3d',destination:'#ff5d5d'};
+function renderHome(){homeView.classList.remove('hidden');projectView.classList.add('hidden');homeBtn.classList.add('hidden');projectGrid.innerHTML='';PROJECTS.forEach(p=>{const card=document.createElement('button');card.className='project-card';card.innerHTML=`<div class="project-cover"><img src="${p.cover}" alt="${esc(p.title)}"><span class="status">${esc(p.status)}</span></div><div class="project-body"><h2>${esc(p.title)}</h2><p>${esc(p.subtitle)}</p><div class="project-meta"><span>${p.presentations.length} Präsentation${p.presentations.length>1?'en':''}</span><span>aktualisiert ${esc(p.updated)}</span></div></div>`;card.onclick=()=>openProject(p.id,p.presentations[0]?.id);projectGrid.appendChild(card)});const empty=document.createElement('div');empty.className='empty-card';empty.innerHTML='Weitere Projekte kannst du künftig von hier aus öffnen.<br>Bestehende Versionen bleiben parallel erhalten.';projectGrid.appendChild(empty)}
+function openProject(id,pid){activeProject=PROJECTS.find(p=>p.id===id);if(!activeProject)return;activePresentation=activeProject.presentations.find(x=>x.id===pid)||activeProject.presentations[0];homeView.classList.add('hidden');projectView.classList.remove('hidden');homeBtn.classList.remove('hidden');renderSidebar();renderDeck();if(window.innerWidth<=980)side.classList.remove('open');history.replaceState({},'',`?project=${encodeURIComponent(activeProject.id)}&presentation=${encodeURIComponent(activePresentation.id)}`)}
+function renderSidebar(){side.innerHTML=`<button class="back" onclick="renderHome()">← Alle Projekte</button><div class="project-head"><img src="${activeProject.cover}" alt=""><div><h2>${esc(activeProject.title)}</h2><p>${esc(activeProject.subtitle)}</p></div></div><div class="side-title">Präsentationen</div><div class="presentation-list">${activeProject.presentations.map(p=>`<button class="presentation-item ${p.id===activePresentation.id?'active':''}" onclick="openProject('${activeProject.id}','${p.id}')"><b>${esc(p.title)}</b><small>${esc(p.subtitle)}</small></button>`).join('')}</div><a class="side-download" href="${activePresentation.gpx}" download>GPX herunterladen</a><div class="side-note">Diese App ist für GitHub und iPad gedacht. Die Kartenansicht nutzt Online-Kacheln von OpenStreetMap und funktioniert beim Präsentieren am besten mit Internetverbindung.</div>`}
+function splitDays(){return [activePresentation.days.slice(0,4),activePresentation.days.slice(4)]}
+function renderDeck(){current=0;const p=activePresentation;const [daysA,daysB]=splitDays();stage.innerHTML=`
+<section class="slide active">
+  <div class="slide-inner">
+    <div class="hero-grid">
+      <div>
+        <div class="kicker">Projekt · ${esc(activeProject.title)}</div>
+        <h1 class="title">${esc(p.overview.title)}</h1>
+        <p class="subtitle">${esc(p.overview.description)}</p>
+        <div class="stats">${p.overview.stats.map(s=>`<div class="stat"><b>${esc(s[0])}</b><span>${esc(s[1])}</span></div>`).join('')}</div>
+        <div class="panel"><div class="kicker">Seite 1</div><h3 style="margin:10px 0 8px;font-size:30px">${esc(p.routeSummary.headline)}</h3><p style="margin:0;color:var(--muted);line-height:1.5">${esc(p.routeSummary.text)}</p></div>
+        <div class="btn-row"><a class="primary" href="${p.gpx}" download>GPX speichern</a><button class="secondary" onclick="openLargeMap()">Karte vergrößern</button></div>
+      </div>
+      <div class="map-panel panel">
+        <div class="map-title"><div><h3>Interaktive Tourkarte</h3><span>Alle Routenpunkte der ausgearbeiteten Grobplanung</span></div><button class="secondary" onclick="openLargeMap()">Groß</button></div>
+        <div class="legend"><span><i class="dot" style="background:${roleColors.start}"></i>Start</span><span><i class="dot" style="background:${roleColors.shaping}"></i>Shaping</span><span><i class="dot" style="background:${roleColors.via}"></i>Via</span><span><i class="dot" style="background:${roleColors.day_destination}"></i>Tagesziel</span><span><i class="dot" style="background:${roleColors.destination}"></i>Ziel</span></div>
+        <div class="map" id="mapInline"></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="slide">
+  <div class="slide-inner">
+    <div class="kicker">Version 1</div>
+    <h1 class="title">Rundreise in 8 Etappen</h1>
+    <p class="subtitle">Die Grobplanung ist auf realistische Tagesetappen für zwölf Motorräder ausgelegt. Kurviger soll später aus diesen Leitpunkten die fahrerisch schönere Detailstrecke ableiten.</p>
+    <div class="route-grid">
+      <div class="panel"><h3 style="margin:0 0 12px;font-size:30px">Etappenüberblick</h3><div class="days-list">${p.days.map(d=>`<div class="day-mini"><b>${esc(d.n)} ${esc(d.place)}</b><div>${esc(d.route)}</div><div>${esc(d.km)} · ${esc(d.time)}</div></div>`).join('')}</div></div>
+      <div>
+        <div class="panel"><div class="kicker">Bierroute</div><h3 style="margin:10px 0 8px;font-size:28px">Die wichtigsten Bieranker</h3><p style="margin:0;color:var(--muted);line-height:1.5">Bayreuth, Plzeň, Radeberg und Stralsund setzen klare Genussanker. Genau diese Stationen sind deshalb nicht nur textlich beschrieben, sondern auf der nächsten Seite auch mit Bildern und direkten Links aufbereitet.</p></div>
+        <div class="callout">Plausibilitätsprüfung: <b>Tag 8</b> bleibt der einzige echte Wackelkandidat. Er ist aktuell schön geplant, könnte bei konsequent kurviger Führung aber auf <b>350–390 km</b> und damit auf mehr als <b>6 Stunden reine Fahrzeit</b> hinauslaufen.</div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="slide">
+  <div class="slide-inner">
+    <div class="kicker">Bier-Highlights</div>
+    <h1 class="title">Die wichtigsten Bieranker der Tour</h1>
+    <p class="subtitle">Dieser Bereich fehlte bisher – jetzt ist er als eigene Bildseite integriert. Jeder Anker enthält eine Bildkarte, den Kerngedanken aus der Reiseplanung und einen direkten Link zur jeweiligen Quelle.</p>
+    <div class="beer-grid">${p.beerHighlights.map(b=>`<article class="beer-card"><img src="${b.image}" alt="${esc(b.city)} – ${esc(b.venue)}"><div><h3>${esc(b.city)}</h3><b>${esc(b.venue)}</b><p>${esc(b.lead)}</p><p>${esc(b.body)}</p><div class="btn-row"><a class="secondary" href="${b.link}" target="_blank" rel="noopener">Quelle öffnen</a></div></div></article>`).join('')}</div>
+  </div>
+</section>
+<section class="slide">
+  <div class="slide-inner">
+    <div class="kicker">Highlights der Tour</div>
+    <h1 class="title">Landschaft, Orte und besondere Stopps</h1>
+    <p class="subtitle">Vor dem reinen Tagesablauf sind hier die wichtigsten Tour-Highlights aus der Planung zusammengefasst – mit Bild und kurzer Einordnung, warum der jeweilige Stopp in diese Runde besonders gut passt.</p>
+    <div class="beer-grid">${p.routeHighlights.map(h=>`<article class="beer-card"><img src="${h.image}" alt="${esc(h.title)}"><div><h3>${esc(h.title)}</h3><b>${esc(h.day)}</b><p>${esc(h.info)}</p><p><b>Warum wichtig:</b> ${esc(h.why)}</p></div></article>`).join('')}</div>
+  </div>
+</section>
+<section class="slide">
+  <div class="slide-inner"><div class="kicker">Tage 1–4</div><h1 class="title">Hinweg und erster Nordbogen</h1><div class="day-grid">${daysA.map(d=>`<div class="day-card"><h3>${esc(d.n)} ${esc(d.place)}</h3><span class="pill">${esc(d.km)} · ${esc(d.time)}</span><p><b>Route:</b> ${esc(d.route)}</p><p><b>Charakter:</b> ${esc(d.character)}</p><p><b>Bieranker:</b> ${esc(d.beer)}</p></div>`).join('')}</div></div>
+</section>
+<section class="slide">
+  <div class="slide-inner"><div class="kicker">Tage 5–8</div><h1 class="title">Ostsee, Rückweg und Heimfahrt</h1><div class="day-grid">${daysB.map(d=>`<div class="day-card"><h3>${esc(d.n)} ${esc(d.place)}</h3><span class="pill">${esc(d.km)} · ${esc(d.time)}</span><p><b>Route:</b> ${esc(d.route)}</p><p><b>Charakter:</b> ${esc(d.character)}</p><p><b>Bieranker:</b> ${esc(d.beer)}</p></div>`).join('')}</div></div>
+</section>
+<section class="slide">
+  <div class="slide-inner"><div class="kicker">Wichtige Hinweise</div><h1 class="title">Feinplanung in Kurviger</h1><p class="subtitle">Die folgenden Punkte sollen bei der fahrerischen Ausarbeitung zwingend erhalten bleiben.</p><div class="notes">${p.notes.map(n=>`<div class="note">${esc(n)}</div>`).join('')}</div></div>
+</section>
+<section class="slide">
+  <div class="slide-inner"><div class="kicker">Ergebnis C</div><h1 class="title">Navigationspunkte / Übergabedaten</h1><p class="subtitle">Die Tabelle entspricht der GPX-Reihenfolge. Sie bildet die stabile Übergabe an Kurviger, Tour Navigator, Reiseführer und Tour Animator.</p><div class="table-wrap"><table><thead><tr><th>Nr.</th><th>Tag</th><th>Rolle</th><th>Name</th><th>Breitengrad</th><th>Längengrad</th><th>Grund</th></tr></thead><tbody>${p.waypoints.map(w=>`<tr>${w.map(v=>`<td>${esc(v)}</td>`).join('')}</tr>`).join('')}</tbody></table></div></div>
+</section>
+<section class="slide">
+  <div class="slide-inner hero-grid">
+    <div>
+      <div class="kicker">Übergabe</div>
+      <h1 class="title">Bereit für Kurviger und spätere Versionen</h1>
+      <p class="subtitle">Version 1 bleibt unverändert erhalten. Später können innerhalb dieses Projekts zusätzliche Präsentationen wie „Version 2 – Kurviger Feinplanung“ oder „Version 3 – finaler Reiseführer“ ergänzt werden.</p>
+      <div class="btn-row"><a class="primary" href="${p.gpx}" download>GPX herunterladen</a><button class="secondary" onclick="openLargeMap()">Karte nochmals groß öffnen</button></div>
+      <p class="tap-hint">Auf dem iPad: mit den Pfeiltasten unten oder per Wischgeste durch die Präsentation.</p>
+    </div>
+    <div class="panel" style="display:flex;align-items:center;justify-content:center"><img src="${activeProject.cover}" alt="Projektcover" style="width:100%;max-width:420px;border-radius:34px;box-shadow:var(--shadow)"></div>
+  </div>
+</section>
+<div class="deck-footer"><span class="counter" id="counter"></span><div class="controls"><button onclick="prevSlide()">Zurück</button><button onclick="nextSlide()">Weiter</button></div></div><div class="progress"><div class="bar" id="bar"></div></div>`;
+  slides=[...stage.querySelectorAll('.slide')];
+  renderInlineMap();
+  updateSlide();
+}
+function updateSlide(){slides.forEach((s,i)=>s.classList.toggle('active',i===current));const c=document.getElementById('counter'),b=document.getElementById('bar');if(c)c.textContent=`${current+1} / ${slides.length}`;if(b)b.style.width=`${((current+1)/slides.length)*100}%`;setTimeout(()=>{if(inlineMap)inlineMap.invalidateSize();if(largeMap&&mapModal.classList.contains('open'))largeMap.invalidateSize()},60)}
+function nextSlide(){if(current<slides.length-1){current++;updateSlide()}} function prevSlide(){if(current>0){current--;updateSlide()}}
+function getLatLngs(){return activePresentation.waypoints.map(w=>[Number(w[4]),Number(w[5])])}
+function roleStyle(role){return {color:roleColors[role]||'#ddd', fillColor:roleColors[role]||'#ddd', fillOpacity:0.95, radius:(role==='day_destination'||role==='destination'||role==='start')?7:5, weight:2}}
+function renderMapTo(containerId,existing){if(existing){existing.remove()}const map=L.map(containerId,{zoomControl:true});L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'&copy; OpenStreetMap'}).addTo(map);const latlngs=getLatLngs();L.polyline(latlngs,{color:'#ffd98a',weight:4,opacity:.85}).addTo(map);activePresentation.waypoints.forEach(w=>{const [nr,tag,role,name,lat,lon,reason]=w;L.circleMarker([Number(lat),Number(lon)],roleStyle(role)).addTo(map).bindPopup(`<b>${esc(name)}</b><br>Tag ${esc(tag)} · ${esc(role)}<br>${esc(reason)}`)});map.fitBounds(latlngs,{padding:[30,30]});return map}
+function renderInlineMap(){if(!document.getElementById('mapInline'))return;inlineMap=renderMapTo('mapInline',inlineMap)}
+function openLargeMap(){mapModal.classList.add('open');setTimeout(()=>{largeMap=renderMapTo('mapLarge',largeMap);largeMap.invalidateSize()},40)}
+function closeLargeMap(){mapModal.classList.remove('open')}
+homeBtn.onclick=renderHome;menuBtn.onclick=()=>side.classList.toggle('open');document.getElementById('closeMapBtn').onclick=closeLargeMap;mapModal.addEventListener('click',e=>{if(e.target===mapModal)closeLargeMap()});window.addEventListener('keydown',e=>{if(mapModal.classList.contains('open')&&e.key==='Escape'){closeLargeMap();return}if(projectView.classList.contains('hidden'))return;if(e.key==='ArrowRight'||e.key===' ')nextSlide();if(e.key==='ArrowLeft')prevSlide();if(e.key==='Escape')renderHome()});stage.addEventListener('touchstart',e=>touchX=e.changedTouches[0].screenX,{passive:true});stage.addEventListener('touchend',e=>{const dx=e.changedTouches[0].screenX-touchX;if(Math.abs(dx)>60)(dx<0?nextSlide():prevSlide())},{passive:true});
+const q=new URLSearchParams(location.search),pid=q.get('project'),prid=q.get('presentation');pid?openProject(pid,prid):renderHome();
+</script>
+</body>
+</html>

@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="ChatGPT" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+  <metadata>
+    <name>Schwäbischer Wald - Siebenknie</name>
+    <desc>8-Tage-Motorrad-Bierroute: Aichschieß – Bayreuth – Plzeň – Dresden – Potsdam – Stralsund – Tangermünde – Erfurt – Aichschieß</desc>
+  </metadata>
+  <rte>
+    <name>Schwäbischer Wald - Siebenknie</name>
+    <desc>Kurviger-Grobroute mit entscheidenden Start-, Shaping-, Via-, Tagesziel- und Zielpunkten</desc>
+    <rtept lat="48.746830" lon="9.390811">
+      <name>Aichschieß Start</name>
+      <desc>Tag 1 | Rolle: start | Start der Rundreise</desc>
+      <type>start</type>
+    </rtept>
+    <rtept lat="49.079820" lon="9.557310">
+      <name>Mainhardt</name>
+      <desc>Tag 1 | Rolle: shaping | Schwäbisch-Fränkischer Wald statt schneller Hauptachse</desc>
+      <type>shaping</type>
+    </rtept>
+    <rtept lat="49.377500" lon="10.178000">
+      <name>Rothenburg ob der Tauber</name>
+      <desc>Tag 1 | Rolle: via | Historischer Ortskern und Pause</desc>
+      <type>via</type>
+    </rtept>
+    <rtept lat="49.768202" lon="11.408902">
+      <name>Pottenstein – Fränkische Schweiz</name>
+      <desc>Tag 1 | Rolle: shaping | Kurvige Fränkische Schweiz</desc>
+      <type>shaping</type>
+    </rtept>
+    <rtept lat="49.947500" lon="11.577500">
+      <name>N1 Bayreuth</name>
+      <desc>Tag 1 | Rolle: day_destination | 1. Tagesziel; Bierstadt und Maisel-Standort</desc>
+      <type>day_destination</type>
+    </rtept>
+    <rtept lat="49.999444" lon="11.851389">
+      <name>Fichtelberg</name>
+      <desc>Tag 2 | Rolle: shaping | Fichtelgebirge und kleine Straßen</desc>
+      <type>shaping</type>
+    </rtept>
+    <rtept lat="50.000000" lon="12.300000">
+      <name>Waldsassen</name>
+      <desc>Tag 2 | Rolle: via | Stiftland, historischer Zwischenstopp</desc>
+      <type>via</type>
+    </rtept>
+    <rtept lat="49.964600" lon="12.701200">
+      <name>Mariánské Lázně</name>
+      <desc>Tag 2 | Rolle: via | Westböhmischer Kurort, Kaffeestopp</desc>
+      <type>via</type>
+    </rtept>
+    <rtept lat="49.880600" lon="12.977000">
+      <name>Konstantinovy Lázně</name>
+      <desc>Tag 2 | Rolle: shaping | Ruhige westböhmische Nebenstraßen</desc>
+      <type>shaping</type>
+    </rtept>
+    <rtept lat="49.753889" lon="12.999444">
+      <name>Stříbro</name>
+      <desc>Tag 2 | Rolle: shaping | Führung über Mže-Tal statt Autobahn</desc>
+      <type>shaping</type>
+    </rtept>
+    <rtept lat="49.738400" lon="13.373600">
+      <name>N2 Plzeň</name>
+      <desc>Tag 2 | Rolle: day_destination | 2. Tagesziel; Pilsner Urquell</desc>
+      <type>day_destination</type>
+    </rtept>
+    <rtept lat="50.231900" lon="12.871000">
+      <name>Karlovy Vary</name>
+      <desc>Tag 3 | Rolle: via | Kurstadt und Start in die Erzgebirgsquerung</desc>
+      <type>via</type>
+    </rtept>
+    <rtept lat="50.408056" lon="12.940278">
+      <name>Boží Dar – Oberwiesenthal</name>
+      <desc>Tag 3 | Rolle: shaping | Erzgebirgskamm und Grenzübergang</desc>
+      <type>shaping</type>
+    </rtept>
+    <rtept lat="50.578880" lon="13.010610">
+      <name>Annaberg-Buchholz</name>
+      <desc>Tag 3 | Rolle: via | Historische Bergstadt</desc>
+      <type>via</type>
+    </rtept>
+    <rtept lat="50.765560" lon="13.753340">
+      <name>Altenberg</name>
+      <desc>Tag 3 | Rolle: shaping | Osterzgebirge vor Dresden</desc>
+      <type>shaping</type>
+    </rtept>
+    <rtept lat="51.049259" lon="13.738360">
+      <name>N3 Dresden</name>
+      <desc>Tag 3 | Rolle: day_destination | 3. Tagesziel; Altstadt und Elbe</desc>
+      <type>day_destination</type>
+    </rtept>
+    <rtept lat="51.114960" lon="13.914356">
+      <name>Radeberger Exportbierbrauerei</name>
+      <desc>Tag 4 | Rolle: via | Brauereiführung ohne Rückstich, liegt in Fahrtrichtung</desc>
+      <type>via</type>
+    </rtept>
+    <rtept lat="51.177109" lon="14.423437">
+      <name>Bautzen</name>
+      <desc>Tag 4 | Rolle: via | Historischer Ortskern und Oberlausitz</desc>
+      <type>via</type>
+    </rtept>
+    <rtept lat="51.518889" lon="14.005556">
+      <name>Senftenberg</name>
+      <desc>Tag 4 | Rolle: shaping | Lausitzer Seenland</desc>
+      <type>shaping</type>
+    </rtept>
+    <rtept lat="51.867874" lon="13.968828">
+      <name>Lübbenau / Spreewald</name>
+      <desc>Tag 4 | Rolle: via | Spreewald-Pause</desc>
+      <type>via</type>
+    </rtept>
+    <rtept lat="52.390600" lon="13.064500">
+      <name>N4 Potsdam</name>
+      <desc>Tag 4 | Rolle: day_destination | 4. Tagesziel; Brauhausstopp am Neuen Garten</desc>
+      <type>day_destination</type>
+    </rtept>
+    <rtept lat="52.924894" lon="12.805317">
+      <name>Neuruppin</name>
+      <desc>Tag 5 | Rolle: shaping | Ruppiner Seenland</desc>
+      <type>shaping</type>
+    </rtept>
+    <rtept lat="53.100444" lon="12.889944">
+      <name>Rheinsberg</name>
+      <desc>Tag 5 | Rolle: via | Schlossstadt und Seenlandschaft</desc>
+      <type>via</type>
+    </rtept>
+    <rtept lat="53.364722" lon="13.063611">
+      <name>Neustrelitz</name>
+      <desc>Tag 5 | Rolle: shaping | Mecklenburgische Seenplatte</desc>
+      <type>shaping</type>
+    </rtept>
+    <rtept lat="54.313889" lon="13.089722">
+      <name>N5 Stralsund</name>
+      <desc>Tag 5 | Rolle: day_destination | Nördlichstes Tagesziel; Störtebeker Brauquartier</desc>
+      <type>day_destination</type>
+    </rtept>
+    <rtept lat="53.793889" lon="12.176389">
+      <name>Güstrow</name>
+      <desc>Tag 6 | Rolle: via | Barlachstadt und Altstadtpause</desc>
+      <type>via</type>
+    </rtept>
+    <rtept lat="53.149910" lon="12.176160">
+      <name>Pritzwalk</name>
+      <desc>Tag 6 | Rolle: shaping | Prignitz-Nebenstraßen statt Rückfahrt über Berlin</desc>
+      <type>shaping</type>
+    </rtept>
+    <rtept lat="52.830700" lon="12.075500">
+      <name>Havelberg</name>
+      <desc>Tag 6 | Rolle: via | Dom- und Hansestadt an der Havel</desc>
+      <type>via</type>
+    </rtept>
+    <rtept lat="52.540830" lon="11.968890">
+      <name>N6 Tangermünde</name>
+      <desc>Tag 6 | Rolle: day_destination | 6. Tagesziel; Schaubrauerei und historische Altstadt</desc>
+      <type>day_destination</type>
+    </rtept>
+    <rtept lat="51.785500" lon="11.152000">
+      <name>Quedlinburg</name>
+      <desc>Tag 7 | Rolle: via | UNESCO-Altstadt und Harzeinstieg</desc>
+      <type>via</type>
+    </rtept>
+    <rtept lat="51.740040" lon="10.893420">
+      <name>Rappbodetalsperre</name>
+      <desc>Tag 7 | Rolle: via | Technik- und Aussichtsstopp</desc>
+      <type>via</type>
+    </rtept>
+    <rtept lat="51.412700" lon="11.111350">
+      <name>Kyffhäuserdenkmal</name>
+      <desc>Tag 7 | Rolle: via | Kurvenrevier und Aussicht</desc>
+      <type>via</type>
+    </rtept>
+    <rtept lat="50.978700" lon="11.032800">
+      <name>N7 Erfurt</name>
+      <desc>Tag 7 | Rolle: day_destination | 7. Tagesziel; historische Gasthausbrauerei</desc>
+      <type>day_destination</type>
+    </rtept>
+    <rtept lat="50.686900" lon="10.914100">
+      <name>Ilmenau</name>
+      <desc>Tag 8 | Rolle: shaping | Thüringer-Wald-Führung</desc>
+      <type>shaping</type>
+    </rtept>
+    <rtept lat="50.567778" lon="10.415556">
+      <name>Meiningen</name>
+      <desc>Tag 8 | Rolle: via | Südthüringer Altstadtpause</desc>
+      <type>via</type>
+    </rtept>
+    <rtept lat="49.490800" lon="9.773200">
+      <name>Bad Mergentheim</name>
+      <desc>Tag 8 | Rolle: via | Taubertal und letzter längerer Stopp</desc>
+      <type>via</type>
+    </rtept>
+    <rtept lat="48.746830" lon="9.390811">
+      <name>Aichschieß Ziel</name>
+      <desc>Tag 8 | Rolle: destination | Ziel der Rundreise</desc>
+      <type>destination</type>
+    </rtept>
+  </rte>
+</gpx>

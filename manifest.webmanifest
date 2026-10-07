@@ -1,0 +1,11 @@
+{
+  "name": "Huschels Tour-Präsentationen",
+  "short_name": "Tour Präsentationen",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#071810",
+  "theme_color": "#071810",
+  "icons": [
+    {"src":"assets/app-icon.png","sizes":"1024x1024","type":"image/png","purpose":"any maskable"}
+  ]
+}
