@@ -1,7 +1,7 @@
 {
   "projectId": "2028-deutschlandtour-jo",
   "presentationId": "v1-grobplanung",
-  "createdAt": "2026-10-07T15:22:51.816Z",
+  "createdAt": "2026-10-07T15:39:16.073Z",
   "images": [
     {
       "index": 0,
@@ -17,6 +17,41 @@
       "index": 2,
       "title": "Mariánské Lázně",
       "path": "projects/2028-deutschlandtour-jo/assets/user-highlights/03-marianske-lazne.jpg"
+    },
+    {
+      "index": 3,
+      "title": "Karlovy Vary",
+      "path": "projects/2028-deutschlandtour-jo/assets/user-highlights/04-karlovy-vary.jpg"
+    },
+    {
+      "index": 4,
+      "title": "Boží Dar – Oberwiesenthal",
+      "path": "projects/2028-deutschlandtour-jo/assets/user-highlights/05-bozi-dar-oberwiesenthal.jpg"
+    },
+    {
+      "index": 5,
+      "title": "Lübbenau / Spreewald",
+      "path": "projects/2028-deutschlandtour-jo/assets/user-highlights/06-lubbenau-spreewald.jpg"
+    },
+    {
+      "index": 6,
+      "title": "Stralsund Altstadt & Hafen",
+      "path": "projects/2028-deutschlandtour-jo/assets/user-highlights/07-stralsund-altstadt-hafen.jpg"
+    },
+    {
+      "index": 7,
+      "title": "Tangermünde",
+      "path": "projects/2028-deutschlandtour-jo/assets/user-highlights/08-tangermunde.jpg"
+    },
+    {
+      "index": 8,
+      "title": "Quedlinburg",
+      "path": "projects/2028-deutschlandtour-jo/assets/user-highlights/09-quedlinburg.jpg"
+    },
+    {
+      "index": 9,
+      "title": "Kyffhäuserdenkmal",
+      "path": "projects/2028-deutschlandtour-jo/assets/user-highlights/10-kyffhauserdenkmal.jpg"
     }
   ]
 }
