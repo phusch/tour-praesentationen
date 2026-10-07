@@ -1,43 +1,37 @@
-# Huschels Tour-Präsentationen V1.2
+# Huschels Tour-Präsentationen V1.3
 
-Diese GitHub-/iPad-App ist eine kleine Präsentationsbibliothek für Reiseprojekte.
+Mehrprojekt-Präsentationsapp für GitHub und iPad.
 
-## Neu in V1.2
-- alle Neuerungen aus V1.1 bleiben erhalten
-- zusätzlicher eigener Bereich **„Highlights der Tour“**
-- Highlight-Karten mit **Bild + Kurzinfo + Einordnung**, warum der Stopp in der Route wichtig ist
-- integriert für:
-  - Rothenburg ob der Tauber
-  - Fränkische Schweiz / Pottenstein
-  - Mariánské Lázně
-  - Karlovy Vary
-  - Boží Dar – Oberwiesenthal
-  - Lübbenau / Spreewald
-  - Stralsund Altstadt & Hafen
-  - Tangermünde
-  - Quedlinburg
-  - Kyffhäuserdenkmal
+## Projekte
 
-## Bereits enthalten
-- echte interaktive Karte direkt auf **Seite 1** der Präsentation
-- alle ausgearbeiteten Routenpunkte aus der GPX werden auf der Karte angezeigt
-- Marker sind anklickbar, die Karte ist zoombar und zusätzlich als **Großansicht** verfügbar
-- eigener Bildbereich für die vier wichtigsten Bieranker
-- GPX direkt im Projekt eingebunden
+### 1. 2028 Deutschlandtour Jo
+- Version 1 – Grobplanung
+- interaktive Karte mit allen Leitpunkten
+- Bieranker mit Bild und Infos
+- Tour-Highlights mit Bild und Kurzinfo
+- 8 Tagesetappen
+- GPX direkt in der App
 
-## Struktur
-- `index.html` – komplette App
-- `data/projects.js` – alle Projekte und Präsentationen
-- `projects/.../files/` – GPX-Dateien
-- `projects/.../assets/` – Icon und Bildmaterial je Projekt
+### 2. RdGA gefahren
+- Version 1 – gefahrene Tour
+- Grundlage: veröffentlichter Wildhogs-RdGA-Reiseplaner unter `https://phusch.github.io/wildhogs-rdga-rep/`
+- 9 Reisetage vom 10.–18.07.2026
+- ca. 2.860 km
+- 11 große Passklassiker
+- rund 17.000 Höhenmeter
+- interaktive Übersichtskarte mit den wichtigsten Tageszielen und Passpunkten
+- Pass-Highlights: Iseran, Galibier, Izoard, Bonette
+- weitere Tour-Highlights: Turini, Daluis/Cayolle, Königsetappe und Chamonix
+- alle neun Tage als kompakte Präsentationskarten
+- direkter Link zum Originalprojekt
 
 ## Bedienung
 - Startseite: Projekt auswählen
-- danach: Präsentationsversion auswählen
-- unten rechts: `Zurück` / `Weiter`
-- auf dem iPad funktionieren auch **Wischgesten**
-- Button `Karte vergrößern` öffnet die Routenkarte in groß
-- `Alle Projekte` führt zurück zur Übersicht
+- innerhalb eines Projekts Präsentationsversion wählen
+- unten rechts mit `Zurück` / `Weiter` blättern
+- auf dem iPad zusätzlich per Wischgeste
+- Karte kann auf Seite 1 vergrößert werden
+- `Alle Projekte` führt zurück zur Projektübersicht
 
-## Wichtig
-Die Kartenansicht verwendet Leaflet mit OpenStreetMap-Kartenkacheln. Auf GitHub und iPad funktioniert das am besten mit aktiver Internetverbindung.
+## Online-Funktionen
+Die interaktive Karte verwendet Leaflet und OpenStreetMap-Kartenkacheln. Dafür ist eine Internetverbindung erforderlich. Die eigentliche Präsentation und die integrierten Projektgrafiken liegen lokal im Paket.

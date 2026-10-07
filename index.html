@@ -60,7 +60,7 @@ const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&
 const roleColors={start:'#39c56b',shaping:'#f0b54a',via:'#7ac7ff',day_destination:'#ff8a3d',destination:'#ff5d5d'};
 function renderHome(){homeView.classList.remove('hidden');projectView.classList.add('hidden');homeBtn.classList.add('hidden');projectGrid.innerHTML='';PROJECTS.forEach(p=>{const card=document.createElement('button');card.className='project-card';card.innerHTML=`<div class="project-cover"><img src="${p.cover}" alt="${esc(p.title)}"><span class="status">${esc(p.status)}</span></div><div class="project-body"><h2>${esc(p.title)}</h2><p>${esc(p.subtitle)}</p><div class="project-meta"><span>${p.presentations.length} Präsentation${p.presentations.length>1?'en':''}</span><span>aktualisiert ${esc(p.updated)}</span></div></div>`;card.onclick=()=>openProject(p.id,p.presentations[0]?.id);projectGrid.appendChild(card)});const empty=document.createElement('div');empty.className='empty-card';empty.innerHTML='Weitere Projekte kannst du künftig von hier aus öffnen.<br>Bestehende Versionen bleiben parallel erhalten.';projectGrid.appendChild(empty)}
 function openProject(id,pid){activeProject=PROJECTS.find(p=>p.id===id);if(!activeProject)return;activePresentation=activeProject.presentations.find(x=>x.id===pid)||activeProject.presentations[0];homeView.classList.add('hidden');projectView.classList.remove('hidden');homeBtn.classList.remove('hidden');renderSidebar();renderDeck();if(window.innerWidth<=980)side.classList.remove('open');history.replaceState({},'',`?project=${encodeURIComponent(activeProject.id)}&presentation=${encodeURIComponent(activePresentation.id)}`)}
-function renderSidebar(){side.innerHTML=`<button class="back" onclick="renderHome()">← Alle Projekte</button><div class="project-head"><img src="${activeProject.cover}" alt=""><div><h2>${esc(activeProject.title)}</h2><p>${esc(activeProject.subtitle)}</p></div></div><div class="side-title">Präsentationen</div><div class="presentation-list">${activeProject.presentations.map(p=>`<button class="presentation-item ${p.id===activePresentation.id?'active':''}" onclick="openProject('${activeProject.id}','${p.id}')"><b>${esc(p.title)}</b><small>${esc(p.subtitle)}</small></button>`).join('')}</div><a class="side-download" href="${activePresentation.gpx}" download>GPX herunterladen</a><div class="side-note">Diese App ist für GitHub und iPad gedacht. Die Kartenansicht nutzt Online-Kacheln von OpenStreetMap und funktioniert beim Präsentieren am besten mit Internetverbindung.</div>`}
+function renderSidebar(){side.innerHTML=`<button class="back" onclick="renderHome()">← Alle Projekte</button><div class="project-head"><img src="${activeProject.cover}" alt=""><div><h2>${esc(activeProject.title)}</h2><p>${esc(activeProject.subtitle)}</p></div></div><div class="side-title">Präsentationen</div><div class="presentation-list">${activeProject.presentations.map(p=>`<button class="presentation-item ${p.id===activePresentation.id?'active':''}" onclick="openProject('${activeProject.id}','${p.id}')"><b>${esc(p.title)}</b><small>${esc(p.subtitle)}</small></button>`).join('')}</div>${activePresentation.gpx?`<a class="side-download" href="${activePresentation.gpx}" download>GPX herunterladen</a>`:''}${activePresentation.sourceUrl?`<a class="side-download" style="background:rgba(255,255,255,.08);color:var(--ink);border:1px solid var(--line)" href="${activePresentation.sourceUrl}" target="_blank" rel="noopener">Originalprojekt öffnen</a>`:''}<div class="side-note">Diese App ist für GitHub und iPad gedacht. Die Kartenansicht nutzt Online-Kacheln von OpenStreetMap und funktioniert beim Präsentieren am besten mit Internetverbindung.</div>`}
 function splitDays(){return [activePresentation.days.slice(0,4),activePresentation.days.slice(4)]}
 function renderDeck(){current=0;const p=activePresentation;const [daysA,daysB]=splitDays();stage.innerHTML=`
 <section class="slide active">
@@ -72,7 +72,7 @@ function renderDeck(){current=0;const p=activePresentation;const [daysA,daysB]=s
         <p class="subtitle">${esc(p.overview.description)}</p>
         <div class="stats">${p.overview.stats.map(s=>`<div class="stat"><b>${esc(s[0])}</b><span>${esc(s[1])}</span></div>`).join('')}</div>
         <div class="panel"><div class="kicker">Seite 1</div><h3 style="margin:10px 0 8px;font-size:30px">${esc(p.routeSummary.headline)}</h3><p style="margin:0;color:var(--muted);line-height:1.5">${esc(p.routeSummary.text)}</p></div>
-        <div class="btn-row"><a class="primary" href="${p.gpx}" download>GPX speichern</a><button class="secondary" onclick="openLargeMap()">Karte vergrößern</button></div>
+        <div class="btn-row">${p.gpx?`<a class="primary" href="${p.gpx}" download>GPX speichern</a>`:''}${p.sourceUrl?`<a class="secondary" href="${p.sourceUrl}" target="_blank" rel="noopener">Originalprojekt</a>`:''}<button class="secondary" onclick="openLargeMap()">Karte vergrößern</button></div>
       </div>
       <div class="map-panel panel">
         <div class="map-title"><div><h3>Interaktive Tourkarte</h3><span>Alle Routenpunkte der ausgearbeiteten Grobplanung</span></div><button class="secondary" onclick="openLargeMap()">Groß</button></div>
@@ -85,22 +85,22 @@ function renderDeck(){current=0;const p=activePresentation;const [daysA,daysB]=s
 <section class="slide">
   <div class="slide-inner">
     <div class="kicker">Version 1</div>
-    <h1 class="title">Rundreise in 8 Etappen</h1>
-    <p class="subtitle">Die Grobplanung ist auf realistische Tagesetappen für zwölf Motorräder ausgelegt. Kurviger soll später aus diesen Leitpunkten die fahrerisch schönere Detailstrecke ableiten.</p>
+    <h1 class="title">${esc(p.page2Title||"Rundreise in 8 Etappen")}</h1>
+    <p class="subtitle">${esc(p.page2Subtitle||"Die Grobplanung ist auf realistische Tagesetappen für zwölf Motorräder ausgelegt. Kurviger soll später aus diesen Leitpunkten die fahrerisch schönere Detailstrecke ableiten.")}</p>
     <div class="route-grid">
       <div class="panel"><h3 style="margin:0 0 12px;font-size:30px">Etappenüberblick</h3><div class="days-list">${p.days.map(d=>`<div class="day-mini"><b>${esc(d.n)} ${esc(d.place)}</b><div>${esc(d.route)}</div><div>${esc(d.km)} · ${esc(d.time)}</div></div>`).join('')}</div></div>
       <div>
-        <div class="panel"><div class="kicker">Bierroute</div><h3 style="margin:10px 0 8px;font-size:28px">Die wichtigsten Bieranker</h3><p style="margin:0;color:var(--muted);line-height:1.5">Bayreuth, Plzeň, Radeberg und Stralsund setzen klare Genussanker. Genau diese Stationen sind deshalb nicht nur textlich beschrieben, sondern auf der nächsten Seite auch mit Bildern und direkten Links aufbereitet.</p></div>
-        <div class="callout">Plausibilitätsprüfung: <b>Tag 8</b> bleibt der einzige echte Wackelkandidat. Er ist aktuell schön geplant, könnte bei konsequent kurviger Führung aber auf <b>350–390 km</b> und damit auf mehr als <b>6 Stunden reine Fahrzeit</b> hinauslaufen.</div>
+        <div class="panel"><div class="kicker">${esc(p.page2PanelKicker||"Bierroute")}</div><h3 style="margin:10px 0 8px;font-size:28px">${esc(p.page2PanelTitle||"Die wichtigsten Bieranker")}</h3><p style="margin:0;color:var(--muted);line-height:1.5">${esc(p.page2PanelText||"Bayreuth, Plzeň, Radeberg und Stralsund setzen klare Genussanker. Genau diese Stationen sind deshalb nicht nur textlich beschrieben, sondern auf der nächsten Seite auch mit Bildern und direkten Links aufbereitet.")}</p></div>
+        <div class="callout">${p.page2Callout?esc(p.page2Callout):'Plausibilitätsprüfung: <b>Tag 8</b> bleibt der einzige echte Wackelkandidat. Er ist aktuell schön geplant, könnte bei konsequent kurviger Führung aber auf <b>350–390 km</b> und damit auf mehr als <b>6 Stunden reine Fahrzeit</b> hinauslaufen.'}</div>
       </div>
     </div>
   </div>
 </section>
 <section class="slide">
   <div class="slide-inner">
-    <div class="kicker">Bier-Highlights</div>
-    <h1 class="title">Die wichtigsten Bieranker der Tour</h1>
-    <p class="subtitle">Dieser Bereich fehlte bisher – jetzt ist er als eigene Bildseite integriert. Jeder Anker enthält eine Bildkarte, den Kerngedanken aus der Reiseplanung und einen direkten Link zur jeweiligen Quelle.</p>
+    <div class="kicker">${esc(p.primaryHighlightsKicker||"Bier-Highlights")}</div>
+    <h1 class="title">${esc(p.primaryHighlightsTitle||"Die wichtigsten Bieranker der Tour")}</h1>
+    <p class="subtitle">${esc(p.primaryHighlightsSubtitle||"Jeder Anker enthält eine Bildkarte, den Kerngedanken aus der Reiseplanung und einen direkten Link zur jeweiligen Quelle.")}</p>
     <div class="beer-grid">${p.beerHighlights.map(b=>`<article class="beer-card"><img src="${b.image}" alt="${esc(b.city)} – ${esc(b.venue)}"><div><h3>${esc(b.city)}</h3><b>${esc(b.venue)}</b><p>${esc(b.lead)}</p><p>${esc(b.body)}</p><div class="btn-row"><a class="secondary" href="${b.link}" target="_blank" rel="noopener">Quelle öffnen</a></div></div></article>`).join('')}</div>
   </div>
 </section>
@@ -130,7 +130,7 @@ function renderDeck(){current=0;const p=activePresentation;const [daysA,daysB]=s
       <div class="kicker">Übergabe</div>
       <h1 class="title">Bereit für Kurviger und spätere Versionen</h1>
       <p class="subtitle">Version 1 bleibt unverändert erhalten. Später können innerhalb dieses Projekts zusätzliche Präsentationen wie „Version 2 – Kurviger Feinplanung“ oder „Version 3 – finaler Reiseführer“ ergänzt werden.</p>
-      <div class="btn-row"><a class="primary" href="${p.gpx}" download>GPX herunterladen</a><button class="secondary" onclick="openLargeMap()">Karte nochmals groß öffnen</button></div>
+      <div class="btn-row">${p.gpx?`<a class="primary" href="${p.gpx}" download>GPX herunterladen</a>`:''}${p.sourceUrl?`<a class="primary" href="${p.sourceUrl}" target="_blank" rel="noopener">Originalprojekt öffnen</a>`:''}<button class="secondary" onclick="openLargeMap()">Karte nochmals groß öffnen</button></div>
       <p class="tap-hint">Auf dem iPad: mit den Pfeiltasten unten oder per Wischgeste durch die Präsentation.</p>
     </div>
     <div class="panel" style="display:flex;align-items:center;justify-content:center"><img src="${activeProject.cover}" alt="Projektcover" style="width:100%;max-width:420px;border-radius:34px;box-shadow:var(--shadow)"></div>

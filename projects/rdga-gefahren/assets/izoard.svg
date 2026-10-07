@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700">
+    <defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#89aeb6"/><stop offset="1" stop-color="#efe5d4"/></linearGradient><linearGradient id="m" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#d8d9d1"/><stop offset="1" stop-color="#47615f"/></linearGradient></defs>
+    <rect width="1200" height="700" rx="42" fill="url(#sky)"/><circle cx="1020" cy="115" r="68" fill="#e3ac4d"/>
+    <path d="M0 430 160 220l120 120 140-220 150 210 120-150 130 175 155-235 145 195 100-120v505H0z" fill="url(#m)"/>
+    <path d="M130 250 280 340 420 120 570 330 690 180 820 355 975 120 1120 315" fill="none" stroke="#f4f0e6" stroke-width="26" opacity=".75"/>
+    <path d="M0 520c170-85 320-80 470-15 150 65 300 70 500-20 95-43 165-42 230-20v235H0z" fill="#334f50"/>
+    <path d="M220 700c170-150 290-175 430-145 150 32 270 18 430-62" fill="none" stroke="#26373e" stroke-width="76" stroke-linecap="round"/>
+    <path d="M240 682c165-132 275-150 410-126 150 27 272 13 412-55" fill="none" stroke="#f0d498" stroke-width="8" stroke-linecap="round" stroke-dasharray="26 22"/>
+    <text x="65" y="92" font-family="Arial,Helvetica,sans-serif" font-size="58" font-weight="700" fill="#18374b">Col d’Izoard</text>
+    <text x="65" y="150" font-family="Arial,Helvetica,sans-serif" font-size="34" fill="#2e4a55">Casse Déserte · Mondlandschaft</text>
+    <text x="65" y="640" font-family="Arial,Helvetica,sans-serif" font-size="28" fill="#f8f3e8">Wildhogs · Route des Grandes Alpes 2026</text></svg>
