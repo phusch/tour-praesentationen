@@ -1,0 +1,22 @@
+{
+  "projectId": "2028-deutschlandtour-jo",
+  "presentationId": "v1-grobplanung",
+  "createdAt": "2026-10-07T15:22:51.816Z",
+  "images": [
+    {
+      "index": 0,
+      "title": "Rothenburg ob der Tauber",
+      "path": "projects/2028-deutschlandtour-jo/assets/user-highlights/01-rothenburg-ob-der-tauber.jpg"
+    },
+    {
+      "index": 1,
+      "title": "Fränkische Schweiz / Pottenstein",
+      "path": "projects/2028-deutschlandtour-jo/assets/user-highlights/02-frankische-schweiz-pottenstein.jpg"
+    },
+    {
+      "index": 2,
+      "title": "Mariánské Lázně",
+      "path": "projects/2028-deutschlandtour-jo/assets/user-highlights/03-marianske-lazne.jpg"
+    }
+  ]
+}
